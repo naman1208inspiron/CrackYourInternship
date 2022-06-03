@@ -1,3 +1,4 @@
+//`````````````````````Iterative Apporach``````````````````````````````
 vector<int> leftView(Node *root)
 {
    queue<Node*> q;
@@ -14,5 +15,20 @@ vector<int> leftView(Node *root)
            if(root->right) q.push(root->right);
        }
    }
+   return lv;
+}
+//``````````````````Recursive Apporach```````````````````````````
+void getLeftView(Node* root, int level, vector<int> &lv){
+    if(root== NULL) return;
+    if(lv.size()== level) lv.push_back(root->data);
+    
+    getLeftView(root->left, level+1, lv);
+    getLeftView(root->right, level+1, lv);
+}
+
+vector<int> leftView(Node *root)
+{
+   vector<int> lv;
+   getLeftView(root, 0, lv);
    return lv;
 }
