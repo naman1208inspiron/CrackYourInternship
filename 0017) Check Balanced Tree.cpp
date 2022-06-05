@@ -18,3 +18,22 @@ public:
         return 1+ max(lh, rh);
     }
 };
+// ````````````````O(n^2)```````````````
+class Solution {
+public:
+    bool isBalanced(TreeNode* root) {
+        if(!root) return true;
+        int lh= findHeight(root->left);
+        int rh= findHeight(root->right);
+        return (abs(lh-rh)<=1 && isBalanced(root->left) && isBalanced(root->right));
+    }
+    
+    int findHeight(TreeNode* root){
+        if(root==NULL) return 0;
+        
+        int lh= findHeight(root->left);
+        int rh= findHeight(root->right);
+        
+        return 1+ max(lh, rh);
+    }
+};
