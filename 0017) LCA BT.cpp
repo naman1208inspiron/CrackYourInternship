@@ -16,6 +16,16 @@ public:
         else if(leftLCA) return leftLCA;
         else if(rightLCA) return rightLCA;
         
+        //````````GOOD PRESENTATION````````````
+        // if(!leftLCA && !rightLCA) return NULL;
+        // else if(leftLCA && rightLCA) return root;
+        // return leftLCA ? leftLCA : rightLCA;
+        
+        // if(leftLCA==NULL) return right;
+        // else if(rightLCA== NULL) return left;
+        // return root;
+        
+        // return !leftLCA ? rightLCA : !rightLCA ? leftLCA : root;
         return NULL;
     }
 };
