@@ -1,3 +1,4 @@
+//````````````````O(n^2) recursive``````````````````````
 class Solution {
 public:
     bool isValidBST(TreeNode* root) {
@@ -21,5 +22,19 @@ public:
         
         if(root->val <= val) return false;
         return chkRight(root->left, val) && chkRight(root->right, val);
+    }
+};
+//``````````````````````Recursive`````````````````````
+class Solution {
+public:
+    bool isValidBST(TreeNode* root) {
+        if(!root) return true;
+        return isValid(root, NULL, NULL);
+    }
+    bool isValid(TreeNode* root, TreeNode* min, TreeNode* max){
+        if(!root) return true;
+        if(max && root->val >= max->val || min && root->val <= min->val) return false;
+        
+        return isValid(root->left, min, root) && isValid(root->right, root, max);
     }
 };
