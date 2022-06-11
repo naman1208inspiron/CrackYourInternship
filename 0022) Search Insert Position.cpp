@@ -32,7 +32,7 @@ public:
             else if(nums[m]>target) hi= m-1;
             else lo= m+1;
         }
-//         just return low
+//         just return low or high+1
         return lo;
     }
 };
