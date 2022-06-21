@@ -1,0 +1,41 @@
+class Solution{
+  public:
+    Node* findMid(Node* head){
+        // we need to take fast as head->next otherwise, for two nodes, the fxn of mergeSort will keep running
+        // taking fast= head, will give us the farther mid in case of even no. of nodes. 
+        Node* slow= head, *fast= head->next;
+        while(fast && fast->next){
+            fast= fast->next->next;
+            slow= slow->next;
+        }
+        return slow;
+    }
+    Node* merge(Node* a, Node* b){
+        if(!a) return b;
+        if(!b) return a;
+        
+        if(a->data < b->data){
+            a->next= merge(a->next, b);
+            return a;
+        }
+        
+        b->next= merge(a, b->next);
+        return b;
+    }
+    //Function to sort the given linked list using Merge Sort.
+    Node* mergeSort(Node* head) {
+        if(!head || !head->next) return head;
+        
+        Node* mid= findMid(head);
+        
+        Node* left= head;
+        Node* right= mid->next;
+        mid->next= NULL;
+        
+        left= mergeSort(left);
+        right= mergeSort(right);
+        
+        Node* newHead= merge(left, right);
+        return newHead;
+    }
+};
